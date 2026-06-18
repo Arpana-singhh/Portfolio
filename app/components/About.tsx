@@ -1,4 +1,5 @@
 import { MdOutlineDesktopMac } from "react-icons/md";
+import TextSplit from "./TextSplit";
 import { FaCode } from "react-icons/fa";
 import { SiNextdotjs } from "react-icons/si";
 import { SiAngular } from "react-icons/si";
@@ -47,23 +48,13 @@ export default function About() {
           {/* Top — bio */}
           <div className="col-12">
             <div className="title-box">
-              <span className="vector-line"></span>
-              <h2 className="section-title">About Me</h2>
+              <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
+              <h2 className="section-title" data-animate="slide-right" data-delay="0.5" data-duration="0.5" data-distance="20">About Me</h2>
             </div>
-            <p className="section-text">
-              I&apos;m a Creative Director and UI/UX Designer from Sydney, Australia, working
-              in web development and print media. I enjoy turning complex problems into
-              simple, beautiful and intuitive designs.
-            </p>
-            <p className="section-text">
-              My job is to build your website so that it is functional and user-friendly
-              but at the same time attractive. I add a personal touch to your product and
-              make sure it is eye-catching and easy to use. My aim is to bring across your
-              message and identity in the most creative way.
-            </p>
-            {/* <a href="/cv/jack-hayden-cv.pdf" download className="btn-primary">
-              Download CV
-            </a> */}
+            <TextSplit
+              className="section-text"
+              text="I'm a Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I enjoy turning complex problems into simple, beautiful and intuitive designs. My job is to build your website so that it is functional and user-friendly but at the same time attractive. I add a personal touch to your product and make sure it is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way."
+            />
           </div>
 
           {/* Bottom — what I'm doing */}

@@ -23,7 +23,13 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`navbar-wrap${scrolled ? " navbar-wrap--scrolled" : ""}`}>
+    <header
+      className={`navbar-wrap${scrolled ? " navbar-wrap--scrolled" : ""}`}
+      data-animate="fade-up"
+      data-duration="0.2"
+      data-distance="40"
+      data-ease="power2.out"
+    >
       <nav className="navbar-bubble">
 
         {/* Logo */}
