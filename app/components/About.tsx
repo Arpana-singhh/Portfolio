@@ -40,7 +40,7 @@ const services = [
 
 export default function About() {
   return (
-    <section className="about-section">
+    <section className="about-section section-pad bg-light">
       <div className="container">
         <div className="row">
 

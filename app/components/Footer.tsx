@@ -18,7 +18,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer bg-light">
       <div className="container">
 
         {/* ── Top row ── */}

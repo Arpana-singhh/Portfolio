@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "antd": "^6.4.4",
     "bootstrap": "^5.3.8",
     "keen-slider": "^6.8.6",
     "next": "16.2.9",

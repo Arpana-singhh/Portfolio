@@ -244,7 +244,7 @@ export default function Projects() {
   const totalSlides = rows.length;
 
   return (
-    <section className="projects-section">
+    <section className="projects-section section-pad bg-light">
       <div className="container">
         <div className="title-box">
           <span className="vector-line"></span>

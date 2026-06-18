@@ -101,7 +101,7 @@ export default function Skills() {
   };
 
   return (
-    <section className="skills-section" ref={sectionRef}>
+    <section className="skills-section section-pad bg-white" ref={sectionRef}>
       <div className="container">
 
         <div className="title-box">

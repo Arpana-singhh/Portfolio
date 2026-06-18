@@ -51,7 +51,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact-section">
+    <section className="contact-section section-pad bg-white">
       <div className="container">
 
         {/* ── Section heading ── */}

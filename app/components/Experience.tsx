@@ -52,7 +52,7 @@ const experiences: ExpEntry[] = [
 
 export default function Experience() {
   return (
-    <section className="experience-section">
+    <section className="experience-section section-pad bg-white">
       <div className="container">
         <div className="title-box">
           <span className="vector-line"></span>
@@ -97,9 +97,9 @@ export default function Experience() {
                   ))}
                 </ul>
 
-                <div className="exp-tech-tags">
+                <div className="badge-tags">
                   {exp.tech.map((t) => (
-                    <span key={t} className="exp-tech-tag">{t}</span>
+                    <span key={t} className="badge-tag">{t}</span>
                   ))}
                 </div>
               </div>

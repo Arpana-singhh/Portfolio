@@ -45,6 +45,12 @@ h1 {
     font-weight: 600;
 }
 
+// ─── Shared Section Utilities ─────────────────────────────────────────────────
+
+.section-pad { padding: 100px 0; }
+.bg-light     { background-color: var(--bg-primary); }
+.bg-white     { background-color: var(--color-white); }
+
 // ─── Shared Typography ────────────────────────────────────────────────────────
 
 .title-box{
@@ -266,17 +272,7 @@ h1 {
 
 // ─── About Section ────────────────────────────────────────────────────────────
 
-.about-section {
-    padding: 100px 0;
-    background-color: var(--bg-primary);
-}
-
 // ─── Experience Section ───────────────────────────────────────────────────────
-
-.experience-section {
-    padding: 100px 0;
-    background-color: var(--color-white);
-}
 
 .exp-timeline {
     margin-top: 48px;
@@ -408,19 +404,19 @@ h1 {
     }
 }
 
-.exp-tech-tags {
+.badge-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.exp-tech-tag {
+.badge-tag {
     font-size: 12px;
     font-weight: 500;
     padding: 4px 14px;
     border-radius: 20px;
     border: var(--border-primary);
-    color: var(--color-text-muted);
+    color: var(--color-text-subtle);
     background: var(--bg-primary);
 }
 
@@ -430,37 +426,41 @@ h1 {
 
 // ─── Education Section ────────────────────────────────────────────────────────
 
-.education-section {
-    padding: 100px 0;
-    background-color: var(--color-white)
-}
 
 // ── Education Cards ───────────────────────────────────────────────────────────
 
 .edu-cards-row {
-    display: flex;
-    gap: 20px;
+    gap: 25px;
     margin-top: 48px;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .edu-card {
-    flex: 1;
     background: var(--color-white);
     border: var(--border-primary);
     box-shadow: var(--shadow-primary);
-    border-radius: 18px;
-    padding: 28px 20px 24px;
+    border-radius: 16px;
+    padding: 24px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
-    gap: 6px;
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    gap: 24px;
+    position: relative;
+    @include transition(0.3s);
+
+    .edu-card-icon {
+        @include transition(0.3s);
+    }
 
     &:hover {
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        transform: translateY(-4px);
+        transform: translateY(-3px);
+        border-color: var(--icon-color);
+
+        .edu-card-icon {
+            border: 2px solid var(--icon-color);
+        }
     }
 }
 
@@ -471,19 +471,28 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 6px;
     flex-shrink: 0;
+    position: absolute;
+    top: -38px;
+    left: -25px;
+}
+
+.edu-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
 }
 
 .edu-card-year {
-    font-size: 11px;
-    color: var(--color-text-muted);
+    font-size: 12px;
+    color: var(--color-text-subtle);
     font-weight: 500;
     margin: 0;
 }
 
 .edu-card-degree {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--color-text);
     margin: 2px 0 0;
@@ -491,31 +500,25 @@ h1 {
 }
 
 .edu-card-institution {
-    font-size: 12px;
-    color: var(--color-text-muted);
+    font-size: 15px;
+    color: var(--color-text-subtle);
     line-height: 1.5;
     margin: 0;
 }
 
 .edu-card-score {
-    display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 5px;
     margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .edu-card-score-value {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--icon-color);
     line-height: 1;
-}
-
-.edu-card-score-label {
-    font-size: 10px;
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
 }
 
 .edu-card-badge {
@@ -536,31 +539,202 @@ h1 {
     margin: 4px 0 0;
 }
 
-.edu-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
-    margin-top: auto;
-    padding-top: 10px;
+.small-sz {
+    font-size: 10px;
+    padding: 3px 10px;
 }
 
-.edu-card-tag {
-    font-size: 10px;
-    font-weight: 500;
-    padding: 3px 10px;
+// ─── Certificates Section ─────────────────────────────────────────────────────
+
+.certs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-top: 48px;
+}
+
+// Stack wrapper — sets the visual height
+.certs-stack-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+
+.certs-stack {
+    position: relative;
+    width: 380px;
+    height: 285px;
+}
+
+// Ghost card (card behind)
+.cert-card--ghost {
+    position: absolute;
+    inset: 0;
+    opacity: 0.18;
+    transform: translateY(10px) scale(0.97);
+    pointer-events: none;
+}
+
+// Active card
+.cert-card--active {
+    position: absolute;
+    inset: 0;
+    user-select: none;
+    touch-action: pan-y;
+}
+
+.cert-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    border: 1.5px solid var(--cert-accent, #dbdbdb);
+    overflow: hidden;
+    background: var(--color-white);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.cert-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+// Dot indicators
+.certs-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.certs-dot {
+    width: 8px;
+    height: 8px;
     border-radius: 20px;
-    border: var(--border-primary);
+    background: #d0d0d0;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    @include transition(0.3s);
+
+    &--active {
+        width: 22px;
+        background: var(--cert-accent, #0077e6);
+    }
+}
+
+// Right content panel
+.certs-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    animation: certFadeUp 0.35s ease both;
+}
+
+@keyframes certFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.certs-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cert-accent);
+    background: color-mix(in srgb, var(--cert-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cert-accent) 30%, transparent);
+    padding: 4px 14px;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+.certs-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+}
+
+.certs-issuer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cert-accent);
+}
+
+.certs-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
     color: var(--color-text-muted);
-    background: var(--bg-primary);
+}
+
+.certs-desc {
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    max-width: 460px;
+}
+
+.certs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    margin-top: 4px;
+    border: none;
+}
+
+// ─── Certificate Modal ────────────────────────────────────────────────────────
+
+.cert-modal {
+    .ant-modal-content {
+        border-radius: 16px;
+        padding: 0;
+        overflow: hidden;
+        line-height: 0;
+    }
+
+    .ant-modal-container{
+        padding:0;
+    }
+
+    .ant-modal-body {
+        padding: 0;
+    }
+
+    .ant-modal-close {
+        top: 12px;
+        right: 12px;
+        color: var(--color-white);
+        background: transparent;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+
+        &:hover {
+            background: transparent;
+            color: var(--color-white);
+        }
+    }
+}
+
+.cert-modal-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 85vh;
+    object-fit: cover;
 }
 
 // ─── Skills Section ───────────────────────────────────────────────────────────
 
-.skills-section {
-    padding: 100px 0;
-    background-color: var(--color-white);
-}
 
 // Tab filters
 .tab-filters {
@@ -675,8 +849,6 @@ h1 {
 // ─── Projects Section ─────────────────────────────────────────────────────────
 
 .projects-section {
-    padding: 100px 0;
-    background-color: var(--bg-primary);
     overflow: hidden;
 
     .container{
@@ -986,10 +1158,6 @@ h1 {
 
 // ─── Contact Section ──────────────────────────────────────────────────────────
 
-.contact-section {
-    padding: 100px 0;
-    background-color: var(--bg-primary);
-}
 
 .contact-heading {
     text-align: center;
@@ -1211,7 +1379,6 @@ h1 {
 // ─── Footer ───────────────────────────────────────────────────────────────────
 
 .footer {
-    background: var(--color-white);
     border-top: var(--border-primary);
     padding: 64px 0 0;
     color: var(--color-text);
@@ -1329,7 +1496,7 @@ h1 {
     height: 36px;
     border-radius: 8px;
     border: var(--border-primary);
-    background: var(--bg-primary);
+    background: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: center;
