@@ -1,3 +1,5 @@
+import Navbar from "./components/Navbar";
+import GsapInit from "./components/GsapInit";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Experience from "./components/Experience";
@@ -10,16 +12,20 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Education />
-      <Certificates />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <GsapInit />
+      <Navbar />
+      <main>
+        <section id="hero"><Hero /></section>
+        <section id="about"><About /></section>
+        <section id="skills"><Skills /></section>
+        <section id="experience"><Experience /></section>
+        <section id="projects"><Projects /></section>
+        <section id="education"><Education /></section>
+        <section id="certificates"><Certificates /></section>
+        <section id="contact"><Contact /></section>
+        <Footer />
+      </main>
+    </>
   );
 }

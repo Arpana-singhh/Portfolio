@@ -61,9 +61,9 @@ export default function About() {
               make sure it is eye-catching and easy to use. My aim is to bring across your
               message and identity in the most creative way.
             </p>
-            <a href="/cv/jack-hayden-cv.pdf" download className="btn-primary">
+            {/* <a href="/cv/jack-hayden-cv.pdf" download className="btn-primary">
               Download CV
-            </a>
+            </a> */}
           </div>
 
           {/* Bottom — what I'm doing */}
