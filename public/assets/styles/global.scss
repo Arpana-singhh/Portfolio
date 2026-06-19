@@ -159,6 +159,7 @@ h1 {
     height: 100%;
     background: var(--color-white);
     box-shadow:var(--shadow-primary);
+    border: var(--border-primary);
 
     .service-card-icon {
         flex-shrink: 0;
@@ -1165,8 +1166,13 @@ h1 {
 
     .skill-progress-bar {
         height: 100%;
+        width: 0%;
         border-radius: 99px;
         transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &.active .skill-progress-bar {
+        width: var(--skill-percent);
     }
 
     .skill-percent {
@@ -1868,4 +1874,8 @@ h1 {
         color: var(--color-primary);
         font-weight: 600;
     }
+}
+
+.about-text{
+    font-size:20px;
 }

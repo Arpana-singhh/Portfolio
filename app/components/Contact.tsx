@@ -57,8 +57,8 @@ export default function Contact() {
         {/* ── Section heading ── */}
         <div className="contact-heading">
           <div className="title-box">
-            <span className="vector-line"></span>
-            <h2 className="section-title">Contact</h2>
+            <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
+            <h2 className="section-title" data-animate="slide-right" data-delay="0.5" data-duration="0.5" data-distance="20">Contact</h2>
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { gsap } from "gsap";
 import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaWordpress } from "react-icons/fa";
 import {
   SiJavascript, SiTypescript, SiNextdotjs, SiRedux,
@@ -60,23 +61,46 @@ const TABS: Category[] = ["Frontend", "Backend", "API & Testing", "Version Contr
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState<Category>("Frontend");
-  const [animated, setAnimated] = useState(false);
+  const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  const animateCards = useCallback(() => {
+    if (!gridRef.current) return;
+    const cards = Array.from(
+      gridRef.current.querySelectorAll<HTMLElement>(".skill-card")
+    );
+    cards.forEach((card) => {
+      card.classList.remove("active");
+      gsap.killTweensOf(card);
+      gsap.set(card, { opacity: 0, y: -30 });
+    });
+    cards.forEach((card, i) => {
+      gsap.to(card, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        delay: i * 0.07,
+        ease: "power2.out",
+        onComplete: () => card.classList.add("active"),
+      });
+    });
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setAnimated(true); },
+      ([entry]) => setInView(entry.isIntersecting),
       { threshold: 0.1 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const handleTab = (tab: Category) => {
-    setAnimated(false);
-    setActiveTab(tab);
-    requestAnimationFrame(() => requestAnimationFrame(() => setAnimated(true)));
-  };
+  useEffect(() => {
+    if (inView) animateCards();
+  }, [inView, activeTab, animateCards]);
+
+  const handleTab = (tab: Category) => setActiveTab(tab);
 
   const filtered = skills.filter(s => s.category === activeTab);
 
@@ -105,27 +129,33 @@ export default function Skills() {
       <div className="container">
 
         <div className="title-box">
-          <span className="vector-line"></span>
-          <h2 className="section-title">My Tech Stack</h2>
+          <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
+          <h2 className="section-title" data-animate="slide-right" data-delay="0.5" data-duration="0.5" data-distance="20">My Tech Stack</h2>
         </div>
 
-        <div className="tab-filters">
-          {TABS.map(tab => (
+        <div className="tab-filters" id="tab-filters">
+          {TABS.map((tab, i) => (
             <button
               key={tab}
               className={`tab-btn${activeTab === tab ? " active" : ""}`}
               onClick={() => handleTab(tab)}
+              data-animate="fade-in"
+              data-trigger="#tab-filters"
+              data-delay={i * 0.1}
+              data-duration="0.5"
+              data-once="false"
             >
               {tab}
             </button>
           ))}
         </div>
 
-        <div className="skills-grid">
+        <div className="skills-grid" ref={gridRef}>
           {filtered.map(skill => (
             <div
               className="skill-card"
               key={skill.name}
+              style={{ "--skill-percent": `${skill.percent}%` } as React.CSSProperties}
               onMouseMove={onMouseMove}
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
@@ -140,10 +170,7 @@ export default function Skills() {
               <div className="skill-progress-wrap">
                 <div
                   className="skill-progress-bar"
-                  style={{
-                    width: animated ? `${skill.percent}%` : "0%",
-                    background: `linear-gradient(90deg, ${skill.iconColor}99, ${skill.iconColor})`,
-                  }}
+                  style={{ background: `linear-gradient(90deg, ${skill.iconColor}99, ${skill.iconColor})` }}
                 />
               </div>
               <span className="skill-percent">{skill.percent}%</span>

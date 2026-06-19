@@ -50,8 +50,8 @@ export default function Education() {
     <section className="education-section section-pad bg-white">
       <div className="container">
         <div className="title-box">
-          <span className="vector-line"></span>
-          <h2 className="section-title">Education</h2>
+          <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
+          <h2 className="section-title" data-animate="slide-right" data-delay="0.5" data-duration="0.5" data-distance="20">Education</h2>
         </div>
 
         <div className="edu-cards-row">

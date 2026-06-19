@@ -7,15 +7,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 interface TextSplitProps {
   text: string;
   className?: string;
-  stagger?: number;
   start?: string;
+  end?: string;
 }
 
 export default function TextSplit({
   text,
   className,
-  stagger = 0.018,
-  start = "top 88%",
+  start = "top+=200 bottom",
+  end = "top center",
 }: TextSplitProps) {
   const ref = useRef<HTMLParagraphElement>(null);
   const words = text.trim().split(/\s+/);
@@ -28,38 +28,24 @@ export default function TextSplit({
       ref.current.querySelectorAll<HTMLSpanElement>(".letter")
     );
 
-    let pendingCalls: gsap.core.Tween[] = [];
-
-    function revealLetters() {
-      pendingCalls.forEach((t) => t.kill());
-      pendingCalls = [];
-      letters.forEach((letter, i) => {
-        const t = gsap.delayedCall(i * stagger, () => {
-          letter.classList.add("visible");
-        });
-        pendingCalls.push(t);
-      });
-    }
-
-    function hideLetters() {
-      pendingCalls.forEach((t) => t.kill());
-      pendingCalls = [];
-      letters.forEach((letter) => letter.classList.remove("visible"));
-    }
-
     const st = ScrollTrigger.create({
       trigger: ref.current,
       start,
-      onEnter: revealLetters,
-      onEnterBack: revealLetters,
-      onLeaveBack: hideLetters,
+      end,
+      scrub: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        letters.forEach((letter, i) => {
+          const letterProgress = i / letters.length;
+          letter.classList.toggle("visible", progress >= letterProgress);
+        });
+      },
     });
 
     return () => {
-      pendingCalls.forEach((t) => t.kill());
       st.kill();
     };
-  }, [stagger, start]);
+  }, [start, end]);
 
   return (
     <p ref={ref} className={className}>

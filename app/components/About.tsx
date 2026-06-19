@@ -1,5 +1,5 @@
 import { MdOutlineDesktopMac } from "react-icons/md";
-import TextSplit from "./TextSplit";
+import TextSplitSequence from "./TextSplitSequence";
 import { FaCode } from "react-icons/fa";
 import { SiNextdotjs } from "react-icons/si";
 import { SiAngular } from "react-icons/si";
@@ -51,19 +51,40 @@ export default function About() {
               <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
               <h2 className="section-title" data-animate="slide-right" data-delay="0.5" data-duration="0.5" data-distance="20">About Me</h2>
             </div>
-            <TextSplit
-              className="section-text"
-              text="I'm a Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I enjoy turning complex problems into simple, beautiful and intuitive designs. My job is to build your website so that it is functional and user-friendly but at the same time attractive. I add a personal touch to your product and make sure it is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way."
+            <TextSplitSequence
+              items={[
+                {
+                  className: "section-text about-text",
+                  text: "I'm a Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I enjoy turning complex problems into simple, beautiful and intuitive designs.",
+                },
+                {
+                  className: "section-text about-text",
+                  text: "My job is to build your website so that it is functional and user-friendly but at the same time attractive. I add a personal touch to your product and make sure it is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way.",
+                },
+              ]}
             />
           </div>
 
           {/* Bottom — what I'm doing */}
           <div className="col-12 mt-50">
-            <h3 className="section-subtitle">What I&apos;m Doing</h3>
-            <div className="row g-4">
-              {services.map((service) => (
+            <h3
+              className="section-subtitle"
+              data-animate="fade-in"
+              data-duration="0.5"
+              data-once="false"
+            >What I&apos;m Doing</h3>
+            <div className="row g-4" id="services-grid">
+              {services.map((service, i) => (
                 <div className="col-md-6" key={service.title}>
-                  <div className="service-card">
+                  <div
+                    className="service-card"
+                    data-animate="fade-down"
+                    data-trigger="#services-grid"
+                    data-delay={i * 0.15}
+                    data-duration="0.6"
+                    data-distance="30"
+                    data-once="false"
+                  >
                     <div
                       className="service-card-icon"
                       style={{ color: service.iconColor, backgroundColor: service.iconBg }}
