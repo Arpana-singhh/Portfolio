@@ -21,7 +21,7 @@ const experiences: ExpEntry[] = [
     role: "Frontend Developer",
     duration: "Sep 2024 – Present",
     location: "Vadodara, Gujarat",
-    icon: <FaLaptopCode size={26} />,
+    icon: <FaLaptopCode size={30} />,
     iconBg: "#e0f4fd",
     iconColor: "#0077e6",
     bullets: [
@@ -38,7 +38,7 @@ const experiences: ExpEntry[] = [
     role: "Junior WordPress Developer",
     duration: "Dec 2023 – Jul 2024",
     location: "Vadodara, Gujarat",
-    icon: <FaWordpress size={26} />,
+    icon: <FaWordpress size={30} />,
     iconBg: "#e8f5ee",
     iconColor: "#198754",
     bullets: [
@@ -52,16 +52,24 @@ const experiences: ExpEntry[] = [
 
 export default function Experience() {
   return (
-    <section className="experience-section section-pad bg-white">
+    <section className="experience-section section-pad sect-light">
       <div className="container">
         <div className="title-box">
           <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
           <h2 className="section-title" data-animate="slide-right" data-delay="0.5" data-duration="0.5" data-distance="20">Work Experience</h2>
         </div>
 
-        <div className="exp-timeline">
+        <div className="exp-timeline" id="exp-timeline">
           {experiences.map((exp, index) => (
-            <div key={exp.id} className="exp-entry">
+            <div
+              key={exp.id}
+              id={`exp-card-${index}`}
+              className="exp-entry"
+              data-animate="fade-in"
+              data-trigger="#exp-timeline"
+              data-delay={index * 0.2}
+              data-duration="0.6"
+            >
 
               {/* Timeline column */}
               <div className="exp-timeline-col">
@@ -71,7 +79,14 @@ export default function Experience() {
 
               {/* Card */}
               <div className="exp-card">
-                <div className="exp-card-header">
+                <div
+                  className="exp-card-header"
+                  data-animate="fade-up"
+                  data-trigger={`#exp-card-${index}`}
+                  data-delay="0.15"
+                  data-duration="0.5"
+                  data-distance="20"
+                >
                   <div
                     className="exp-icon"
                     style={{ background: exp.iconBg, color: exp.iconColor }}
@@ -89,15 +104,29 @@ export default function Experience() {
                 </div>
 
                 <ul className="exp-bullets">
-                  {exp.bullets.map((bullet) => (
-                    <li key={bullet}>
+                  {exp.bullets.map((bullet, bi) => (
+                    <li
+                      key={bullet}
+                      data-animate="fade-up"
+                      data-trigger={`#exp-card-${index}`}
+                      data-delay={0.35 + bi * 0.12}
+                      data-duration="0.5"
+                      data-distance="20"
+                    >
                       <HiArrowRight className="exp-bullet-icon" />
                       <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="badge-tags">
+                <div
+                  className="badge-tags"
+                  data-animate="fade-up"
+                  data-trigger={`#exp-card-${index}`}
+                  data-delay={0.35 + exp.bullets.length * 0.12}
+                  data-duration="0.5"
+                  data-distance="20"
+                >
                   {exp.tech.map((t) => (
                     <span key={t} className="badge-tag">{t}</span>
                   ))}

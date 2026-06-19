@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
+import { gsap } from "gsap";
 import Image from "next/image";
 import { HiArrowUpRight, HiCheckCircle, HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useKeenSlider } from "keen-slider/react";
@@ -181,7 +182,10 @@ export default function Projects() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDesktop, setIsDesktop]       = useState(false);
   const [activeTab, setActiveTab]       = useState<Tab>("All");
+  const [inView, setInView]             = useState(false);
+  const [sliderReady, setSliderReady]   = useState(false);
   const hoverTimers = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map());
+  const sliderWrapRef = useRef<HTMLDivElement>(null);
 
   const filtered = activeTab === "All"
     ? projects
@@ -192,9 +196,10 @@ export default function Projects() {
   const [sliderRef, instanceRef] = useKeenSlider({
     slides: { perView: 1 },
     mode: "snap",
+    created: () => setSliderReady(true),
     slideChanged(s) {
       setCurrentSlide(s.track.details.rel);
-      setActiveId(null); // reset any expanded card when row changes
+      setActiveId(null);
     },
   });
 
@@ -214,6 +219,43 @@ export default function Projects() {
     instanceRef.current?.moveToIdx(0, true);
     instanceRef.current?.update();
   }, [activeTab]);
+
+  // observe section entering viewport
+  useEffect(() => {
+    const el = sliderWrapRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true); },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // animate slides + inner elements whenever tab changes or section enters view
+  useEffect(() => {
+    if (!inView || !sliderWrapRef.current) return;
+    const slides = Array.from(
+      sliderWrapRef.current.querySelectorAll<HTMLElement>(".project-slide")
+    );
+    slides.forEach((slide, i) => {
+      const d = i * 0.15;
+      gsap.fromTo(slide, { opacity: 0 }, { opacity: 1, duration: 0.6, delay: d, ease: "power2.out" });
+      const targets = [
+        slide.querySelector<HTMLElement>(".project-card-img"),
+        slide.querySelector<HTMLElement>(".project-category"),
+        slide.querySelector<HTMLElement>(".project-card-title"),
+        slide.querySelector<HTMLElement>(".project-card-desc"),
+      ];
+      targets.forEach((el, j) => {
+        if (!el) return;
+        gsap.fromTo(el,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, delay: d + 0.2 + j * 0.15, ease: "power2.out" }
+        );
+      });
+    });
+  }, [inView, activeTab]);
 
   const handleMouseEnter = useCallback((id: number) => {
     if (!isDesktop) return;
@@ -244,7 +286,7 @@ export default function Projects() {
   const totalSlides = rows.length;
 
   return (
-    <section className="projects-section section-pad bg-light">
+    <section className="projects-section section-pad sect-white">
       <div className="container">
         <div className="title-box">
           <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
@@ -270,19 +312,27 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="tab-filters">
-          {TABS.map(tab => (
+        <div className="tab-filters" id="projects-tab-filters">
+          {TABS.map((tab, i) => (
             <button
               key={tab}
               className={`tab-btn${activeTab === tab ? " active" : ""}`}
               onClick={() => setActiveTab(tab)}
+              data-animate="fade-in"
+              data-trigger="#projects-tab-filters"
+              data-delay={i * 0.1}
+              data-duration="0.5"
             >
               {tab}
             </button>
           ))}
         </div>
 
-        <div className="projects-slider-wrap">
+        <div
+          className="projects-slider-wrap"
+          ref={sliderWrapRef}
+          style={{ opacity: sliderReady ? 1 : 0 }}
+        >
           <div ref={sliderRef} className="keen-slider projects-keen-slider">
             {rows.map((row, rowIndex) => (
               <div key={rowIndex} className="keen-slider__slide">

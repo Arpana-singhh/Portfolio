@@ -47,20 +47,33 @@ const cards: EduCard[] = [
 
 export default function Education() {
   return (
-    <section className="education-section section-pad bg-white">
+    <section className="education-section section-pad sect-light">
       <div className="container">
         <div className="title-box">
           <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
           <h2 className="section-title" data-animate="slide-right" data-delay="0.5" data-duration="0.5" data-distance="20">Education</h2>
         </div>
 
-        <div className="edu-cards-row">
-          {cards.map((card) => (
-            <div key={card.id} className="edu-card" style={{ "--icon-color": card.iconColor } as React.CSSProperties}>
+        <div className="edu-cards-row" id="edu-cards-row">
+          {cards.map((card, i) => (
+            <div
+              key={card.id}
+              className="edu-card"
+              style={{ "--icon-color": card.iconColor } as React.CSSProperties} 
+              data-animate="fade-up"
+              data-delay={i * 0.1}
+              data-duration="0.6"
+              data-distance="40"
+              >
               <div
                 className="edu-card-icon"
                 style={{ color: card.iconColor, backgroundColor: card.iconBg }}
-              >
+                data-animate="pop"
+                data-delay="0.5"
+                data-duration="0.2"
+                data-distance="20"
+                data-ease="back.out(1.7)"
+                >
                 {card.icon}
               </div>
 

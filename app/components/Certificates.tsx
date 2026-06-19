@@ -101,7 +101,7 @@ export default function Certificates() {
 
   return (
     <>
-      <section className="certs-section section-pad bg-light">
+      <section className="certs-section section-pad sect-white">
         <div className="container">
           <div className="title-box">
             <span className="vector-line" data-animate="line-expand" data-duration="0.5" data-ease="power2.out"></span>
@@ -110,49 +110,58 @@ export default function Certificates() {
 
           <div className="certs-grid">
             {/* ── Left: card stack ── */}
-            <div className="certs-stack-wrap">
-              <div className="certs-stack">
-                {/* Ghost card */}
-                <div
-                  className="cert-card cert-card--ghost"
-                  style={{ "--cert-accent": ghost.accent } as React.CSSProperties}
-                >
-                  <img src={ghost.image} alt="" className="cert-card-img" />
+            <div
+              className="certs-stack-wrap"
+              data-animate="zoom-in"
+              data-trigger=".certs-section"
+              data-duration="0.6"
+              data-start="top 80%"
+            >
+              <div className="certs-stack-inner">
+                <div className="certs-stack">
+                  {/* Ghost card */}
+                  <div
+                    className="cert-card cert-card--ghost"
+                    style={{ "--cert-accent": ghost.accent } as React.CSSProperties}
+                  >
+                    <img src={ghost.image} alt="" className="cert-card-img" />
+                  </div>
+
+                  {/* Active card */}
+                  <div
+                    ref={cardRef}
+                    className="cert-card cert-card--active"
+                    style={
+                      {
+                        "--cert-accent": cert.accent,
+                        transform: `translateX(${dragOffset}px) rotate(${dragOffset * 0.03}deg)`,
+                        transition: dragOffset !== 0 ? "none" : "transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)",
+                        cursor: dragging.current ? "grabbing" : "grab",
+                      } as React.CSSProperties
+                    }
+                    onPointerDown={onPointerDown}
+                    onPointerMove={onPointerMove}
+                    onPointerUp={onPointerUp}
+                    onPointerCancel={onPointerUp}
+                  >
+                    <img src={cert.image} alt={cert.title} className="cert-card-img" />
+                  </div>
                 </div>
 
-                {/* Active card */}
-                <div
-                  ref={cardRef}
-                  className="cert-card cert-card--active"
-                  style={
-                    {
-                      "--cert-accent": cert.accent,
-                      transform: `translateX(${dragOffset}px) rotate(${dragOffset * 0.03}deg)`,
-                      transition: dragOffset !== 0 ? "none" : "transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)",
-                      cursor: dragging.current ? "grabbing" : "grab",
-                    } as React.CSSProperties
-                  }
-                  onPointerDown={onPointerDown}
-                  onPointerMove={onPointerMove}
-                  onPointerUp={onPointerUp}
-                  onPointerCancel={onPointerUp}
-                >
-                  <img src={cert.image} alt={cert.title} className="cert-card-img" />
+                {/* Dots */}
+                <div className="certs-dots">
+                  {certs.map((c, i) => (
+                    <button
+                      key={c.id}
+                      className={`certs-dot${i === active ? " certs-dot--active" : ""}`}
+                      style={{ "--cert-accent": c.accent } as React.CSSProperties}
+                      onClick={() => goTo(i)}
+                      aria-label={`Go to certificate ${i + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
 
-              {/* Dots */}
-              <div className="certs-dots">
-                {certs.map((c, i) => (
-                  <button
-                    key={c.id}
-                    className={`certs-dot${i === active ? " certs-dot--active" : ""}`}
-                    style={{ "--cert-accent": c.accent } as React.CSSProperties}
-                    onClick={() => goTo(i)}
-                    aria-label={`Go to certificate ${i + 1}`}
-                  />
-                ))}
-              </div>
             </div>
 
             {/* ── Right: content ── */}
@@ -161,25 +170,21 @@ export default function Certificates() {
               className="certs-content"
               style={{ "--cert-accent": cert.accent } as React.CSSProperties}
             >
-              <span className="certs-badge">{cert.badge}</span>
-
-              <h3 className="certs-title">{cert.title}</h3>
-
-              <p className="certs-issuer">
+              <span className="certs-badge" data-animate="fade-up" data-delay="0.4" data-duration="0.6" data-distance="24">{cert.badge}</span>
+              <h3 className="section-subtitle" data-animate="fade-up" data-delay="0.5" data-duration="0.6" data-distance="24">{cert.title}</h3>
+              <p className="certs-issuer" data-animate="fade-up" data-delay="0.6" data-duration="0.6" data-distance="24">
                 <MdOutlineWorkspacePremium size={16} />
                 {cert.issuer}
               </p>
-
-              <p className="certs-date">
+              <p className="certs-date" data-animate="fade-up" data-delay="0.7" data-duration="0.6" data-distance="24">
                 <MdCalendarToday size={13} />
                 {cert.date}
               </p>
-
-              <p className="certs-desc">{cert.description}</p>
-
+              <p className="sub-text" data-animate="fade-up" data-delay="0.8" data-duration="0.6" data-distance="24">{cert.description}</p>
               <button
                 className="btn-primary certs-btn"
                 onClick={() => setModalOpen(true)}
+                data-animate="fade-up" data-delay="0.8" data-duration="0.9" data-distance="24"
               >
                 <FiExternalLink size={15} />
                 View Certificate

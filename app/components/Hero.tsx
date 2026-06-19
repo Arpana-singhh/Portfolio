@@ -24,10 +24,11 @@ export default function Hero() {
 
           {/* Info */}
           <p className="hero-sub">
-            <span data-animate="fade-up" data-delay="0.4" data-duration="0.6" data-distance="24">I design and develop end-to-end</span>
-            <span data-animate="fade-up" data-delay="0.5" data-duration="0.6" data-distance="24">web applications - clean UI, solid </span>
-             <span data-animate="fade-up" data-delay="0.6" data-duration="0.6" data-distance="24">code, and experiences people </span>
-            <span data-animate="fade-up" data-delay="0.7" data-duration="0.6" data-distance="24">actually enjoy using.</span>
+            <span data-animate="fade-up" data-delay="0.4" data-duration="0.6" data-distance="24">I build modern and scalable web applications using </span>
+            <span data-animate="fade-up" data-delay="0.5" data-duration="0.6" data-distance="24"> MERN and MEAN stack technologies, delivering</span>
+             <span data-animate="fade-up" data-delay="0.6" data-duration="0.6" data-distance="24">  pixel-perfect UI, responsive layouts, and </span>
+            <span data-animate="fade-up" data-delay="0.7" data-duration="0.6" data-distance="24">optimized performance for exceptional</span>
+            <span data-animate="fade-up" data-delay="0.8" data-duration="0.6" data-distance="24"> user experiences.</span>
           </p>
 
           {/* Heading */}

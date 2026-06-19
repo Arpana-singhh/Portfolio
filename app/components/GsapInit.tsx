@@ -138,6 +138,10 @@ export default function GsapInit() {
       setTimeout(() => ScrollTrigger.refresh(), 300);
     });
 
+    // gsap.set(opacity:0) is already applied inline on all [data-animate] elements above,
+    // so adding js-loaded now lets dynamically-remounted elements appear at their natural opacity.
+    document.documentElement.classList.add("js-loaded");
+
     return () => ctx.revert();
   }, []);
 

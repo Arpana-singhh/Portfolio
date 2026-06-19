@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { HiArrowUpRight, HiOutlineEnvelope, HiOutlinePhone, HiOutlineMapPin, HiOutlineComputerDesktop } from "react-icons/hi2";
 
 const NAV_LINKS = [
   { label: "About",      href: "#about" },
@@ -18,7 +18,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="footer bg-light">
+    <footer className="footer sect-white">
       <div className="container">
 
         {/* ── Top row ── */}
@@ -41,7 +41,7 @@ export default function Footer() {
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <a href={link.href} className="footer-link">
-                    <HiArrowUpRight size={12} />
+                    <HiArrowUpRight size={16} />
                     {link.label}
                   </a>
                 </li>
@@ -53,25 +53,25 @@ export default function Footer() {
           <div className="footer-col">
             <p className="footer-col-heading">Contact</p>
             <ul className="footer-contact-list">
-              <li>arpana.singh@email.com</li>
-              <li>+91 98765 43210</li>
-              <li>Vadodara, Gujarat</li>
-              <li>Remote OK</li>
+              <li><HiOutlineEnvelope size={18} />arpana.singh@email.com</li>
+              <li><HiOutlinePhone size={18} />+91 98765 43210</li>
+              <li><HiOutlineMapPin size={18} />Vadodara, Gujarat</li>
+              <li><HiOutlineComputerDesktop size={18} />Remote OK</li>
             </ul>
             <div className="footer-socials">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  className="footer-social-btn"
-                  aria-label={s.label}
-                >
-                  {s.icon}
+              <div className="pf-socials" data-animate="fade-up" data-delay="0.85" data-duration="0.6" data-distance="40">
+                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="pf-social-badge pf-social-badge--1">
+                  <FaGithub size={20} />
                 </a>
-              ))}
+                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="pf-social-badge pf-social-badge--linkedin pf-social-badge--2">
+                  <FaLinkedinIn size={20} />
+                </a>
+                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="pf-social-badge pf-social-badge--instagram pf-social-badge--3">
+                  <FaInstagram size={20} />
+                </a>
+               </div>
             </div>
           </div>
-
         </div>
 
         {/* ── Divider ── */}

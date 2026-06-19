@@ -6,12 +6,12 @@ import { SiAngular } from "react-icons/si";
 
 const services = [
   {
-    icon: <FaCode size={30} />,
-    iconColor: "#0ea5e9",
-    iconBg: "#e0f4fd",
-    title: "Web Development",
+    icon: <MdOutlineDesktopMac size={32} />,
+    iconColor: "#198754",
+    iconBg: "#e8f5ee",
+    title: "Frontend Development",
     description:
-      "End-to-end web solutions — from architecture to deployment — crafted for performance, scalability, and reliability.",
+      "Building responsive, accessible, and pixel-perfect user interfaces with React, Next.js, Angular, TypeScript, Tailwind CSS, and modern frontend architecture.",
   },
   {
     icon: <SiNextdotjs size={30} />,
@@ -19,7 +19,7 @@ const services = [
     iconBg: "#ebebeb",
     title: "React & Next.js Development",
     description:
-      "Developing fast, SEO-friendly applications with React and Next.js, leveraging SSR, SSG, and the App Router.",
+      "Developing high-performance web applications with React and Next.js, including SSR, SSG, authentication, API integration, and SEO optimization.",
   },
   {
     icon: <SiAngular size={30} />,
@@ -27,21 +27,21 @@ const services = [
     iconBg: "#fde8ec",
     title: "Angular Development",
     description:
-      "Creating enterprise-grade SPAs with Angular, delivering maintainable, component-driven architecture at scale.",
+      "Creating scalable enterprise applications with Angular, RxJS, TypeScript, and component-driven architecture for complex business workflows.",
   },
   {
-    icon: <MdOutlineDesktopMac size={32} />,
-    iconColor: "#198754",
-    iconBg: "#e8f5ee",
-    title: "Frontend Development",
+    icon: <FaCode size={30} />,
+    iconColor: "#0ea5e9",
+    iconBg: "#e0f4fd",
+    title: "Full Stack Development",
     description:
-      "Building responsive, accessible, and pixel-perfect interfaces using modern HTML, CSS, and JavaScript standards.",
+      "Building end-to-end solutions using Node.js, Express.js, MongoDB, REST APIs, authentication systems, and modern frontend frameworks.",
   },
 ];
 
 export default function About() {
   return (
-    <section className="about-section section-pad bg-light">
+    <section className="about-section section-pad sect-light">
       <div className="container">
         <div className="row">
 
@@ -55,11 +55,11 @@ export default function About() {
               items={[
                 {
                   className: "section-text about-text",
-                  text: "I'm a Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I enjoy turning complex problems into simple, beautiful and intuitive designs.",
+                  text: "I'm a Frontend Developer based in Vadodara, Gujarat, with experience building modern, scalable, and user-focused web applications. I specialize in React.js, Next.js, Angular, and TypeScript, creating pixel-perfect interfaces that combine clean design, strong performance, and exceptional user experience. I enjoy turning complex requirements into intuitive digital products that are both functional and visually engaging.",
                 },
                 {
                   className: "section-text about-text",
-                  text: "My job is to build your website so that it is functional and user-friendly but at the same time attractive. I add a personal touch to your product and make sure it is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way.",
+                  text: "Beyond frontend development, I have hands-on experience with Node.js, Express.js, and MongoDB, allowing me to contribute across the full development lifecycle. Currently, I work on enterprise applications where I build reusable components, integrate APIs, optimize application performance, and implement business-critical features. My focus is always on writing clean, maintainable code and delivering solutions that provide real value to users and businesses.",
                 },
               ]}
             />
@@ -71,9 +71,8 @@ export default function About() {
               className="section-subtitle"
               data-animate="fade-in"
               data-duration="0.5"
-              data-once="false"
             >What I&apos;m Doing</h3>
-            <div className="row g-4" id="services-grid">
+            <div className="row g-4 mgt" id="services-grid">
               {services.map((service, i) => (
                 <div className="col-md-6" key={service.title}>
                   <div
@@ -83,7 +82,6 @@ export default function About() {
                     data-delay={i * 0.15}
                     data-duration="0.6"
                     data-distance="30"
-                    data-once="false"
                   >
                     <div
                       className="service-card-icon"
@@ -92,8 +90,8 @@ export default function About() {
                       {service.icon}
                     </div>
                     <div>
-                      <h4 className="service-card-title">{service.title}</h4>
-                      <p className="service-card-text">{service.description}</p>
+                      <h4 className="sub-title">{service.title}</h4>
+                      <p className="sub-text">{service.description}</p>
                     </div>
                   </div>
                 </div>
