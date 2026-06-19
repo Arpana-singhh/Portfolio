@@ -9,6 +9,12 @@ export default function Hero() {
       <div className="container">
         <div className="hero-inner">
 
+          {/* Heading */}
+          <div className="hero-heading-wrap">
+            <h1 className="hero-hi" data-animate="fade-up" data-duration="0.9" data-distance="40">Hi I&apos;m</h1>
+            <HandwriteReveal text="Arpana Singh" className="hero-name-big" delay={0.2} duration={3.2} />
+          </div>
+
           {/* Top badge */}
           <div
             className="hero-top-badge"
@@ -24,18 +30,12 @@ export default function Hero() {
 
           {/* Info */}
           <p className="hero-sub">
-            <span data-animate="fade-up" data-delay="0.4" data-duration="0.6" data-distance="24">I build modern and scalable web applications using </span>
-            <span data-animate="fade-up" data-delay="0.5" data-duration="0.6" data-distance="24"> MERN and MEAN stack technologies, delivering</span>
-             <span data-animate="fade-up" data-delay="0.6" data-duration="0.6" data-distance="24">  pixel-perfect UI, responsive layouts, and </span>
-            <span data-animate="fade-up" data-delay="0.7" data-duration="0.6" data-distance="24">optimized performance for exceptional</span>
-            <span data-animate="fade-up" data-delay="0.8" data-duration="0.6" data-distance="24"> user experiences.</span>
+            <span data-animate="fade-up" data-delay="0.4">Frontend Developer specializing in React, Next.js,</span>
+            <span data-animate="fade-up" data-delay="0.5"> Angular, and TypeScript. Building pixel-perfect,</span>
+            <span data-animate="fade-up" data-delay="0.6">scalable applications with performance </span>
+            <span data-animate="fade-up" data-delay="0.7">and user experience at the core.</span>
           </p>
 
-          {/* Heading */}
-          <div className="hero-heading-wrap">
-            <h1 className="hero-hi" data-animate="fade-up" data-duration="0.9" data-distance="40">Hi I&apos;m</h1>
-            <HandwriteReveal text="Arpana Singh" className="hero-name-big" delay={0.2} duration={3.2} />
-          </div>
 
           {/* Center image */}
           <div className="hero-image-wrap"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FiMail } from "react-icons/fi";
+import { FiMail, FiMenu, FiX } from "react-icons/fi";
 
 const links = [
   { label: "About",        href: "#about" },
@@ -15,12 +15,18 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleLinkClick = (href: string) => {
+    setActive(href);
+    setMenuOpen(false);
+  };
 
   return (
     <header
@@ -38,7 +44,7 @@ export default function Navbar() {
           <span className="navbar-logo-text">Arpana</span>
         </a>
 
-        {/* Links */}
+        {/* Desktop links */}
         <ul className="navbar-links">
           {links.map((l) => (
             <li key={l.href}>
@@ -53,13 +59,40 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <a href="#contact" className="navbar-cta">
-          <span className="navbar-cta-text">Contact</span>
-          <FiMail size={16} className="navbar-cta-icon" />
-        </a>
+        <div className="cta-ham-box">
+          {/* Desktop CTA */}
+          <a href="#contact" className="navbar-cta">
+            <span className="navbar-cta-text">Contact</span>
+            <FiMail size={16} className="navbar-cta-icon" />
+          </a>
+
+          {/* Mobile hamburger */}
+          <button
+            className="navbar-hamburger"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+          </button>
+        </div>
 
       </nav>
+
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <nav className="navbar-mobile-menu">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className={`navbar-mobile-link${active === l.href ? " navbar-mobile-link--active" : ""}`}
+              onClick={() => handleLinkClick(l.href)}
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }

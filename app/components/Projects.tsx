@@ -169,11 +169,9 @@ const projects: Project[] = [
   },
 ];
 
-const CHUNK = 4;
-
-function chunkProjects(list: Project[]) {
-  return Array.from({ length: Math.ceil(list.length / CHUNK) }, (_, i) =>
-    list.slice(i * CHUNK, (i + 1) * CHUNK)
+function chunkProjects(list: Project[], size: number) {
+  return Array.from({ length: Math.ceil(list.length / size) }, (_, i) =>
+    list.slice(i * size, (i + 1) * size)
   );
 }
 
@@ -182,6 +180,7 @@ export default function Projects() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDesktop, setIsDesktop]       = useState(false);
   const [activeTab, setActiveTab]       = useState<Tab>("All");
+  const [chunkSize, setChunkSize]       = useState(4);
   const [inView, setInView]             = useState(false);
   const [sliderReady, setSliderReady]   = useState(false);
   const hoverTimers = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map());
@@ -191,7 +190,7 @@ export default function Projects() {
     ? projects
     : projects.filter(p => p.type === (activeTab === "Professional Projects" ? "professional" : "personal"));
 
-  const rows = chunkProjects(filtered);
+  const rows = chunkProjects(filtered, chunkSize);
 
   const [sliderRef, instanceRef] = useKeenSlider({
     slides: { perView: 1 },
@@ -204,7 +203,11 @@ export default function Projects() {
   });
 
   useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 1201);
+    const check = () => {
+      const w = window.innerWidth;
+      setIsDesktop(w >= 1201);
+      setChunkSize(w <= 767 ? 1 : w <= 991 ? 2 : 4);
+    };
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -212,13 +215,13 @@ export default function Projects() {
 
   useEffect(() => () => { hoverTimers.current.forEach(clearTimeout); }, []);
 
-  // reset slider + active card whenever tab changes
+  // reset slider + active card whenever tab or chunk size changes
   useEffect(() => {
     setCurrentSlide(0);
     setActiveId(null);
     instanceRef.current?.moveToIdx(0, true);
     instanceRef.current?.update();
-  }, [activeTab]);
+  }, [activeTab, chunkSize]);
 
   // observe section entering viewport
   useEffect(() => {
@@ -278,6 +281,7 @@ export default function Projects() {
   }, [isDesktop]);
 
   const getSlideStyle = (id: number): React.CSSProperties => {
+    if (!isDesktop) return {};
     if (activeId === null) return { flex: "0 1 25%" };
     if (id === activeId)   return { flex: "0 1 50%" };
     return { flex: "0 1 16.66%" };

@@ -50,7 +50,7 @@ h1 {
 
 // ─── Shared Section Utilities ─────────────────────────────────────────────────
 
-.section-pad { padding: 100px 0; }
+.section-pad { padding: 100px 0; @include tab{padding: 70px 0;} @include phone-xr{padding: 60px 0;}}
 .sect-light  { background-color: var(--bg-primary); }
 .sect-white  { background-color: var(--color-white); }
 
@@ -61,14 +61,31 @@ h1 {
     align-items: center;
     margin-bottom: 30px;
     gap: 15px;
+
+    @include tab{
+        gap:10px;
+    }
+
+    @include phone-xr{
+        margin-bottom:20px;
+    }
 }
 
 .vector-line{
-    width: 62px;
+    --sz:62px;
+    width: var(--sz);
     height: 6px;
     display: block;
     border-radius: 4px;
     background: var(--color-gradient);
+
+    @include tab{
+        --sz:50px;
+    }
+
+    @include phone-xr{
+        --sz:40px;
+    }
 }
 
 .section-title {
@@ -77,12 +94,24 @@ h1 {
     color: var(--color-text);
     line-height: 1.15;
     letter-spacing: -0.5px;
+
+    @include tab{
+        font-size: 32px;
+    }
+
+    @include phone-xr{
+        font-size: 26px;
+    }
 }
 
 .section-subtitle {
     font-size: 22px;
     font-weight: 600;
     color: var(--color-text);
+
+    @include phone-xr{
+        font-size: 20px; 
+    }
 }
 
 .section-text {
@@ -127,6 +156,16 @@ h1 {
     overflow: hidden;
     z-index: 0;
 
+    @include tab{
+        padding: 9px 18px;
+        font-size: 14px;
+    }
+
+    @include phone-xr{
+        padding: 7px 15px;
+        font-size: 13px;
+    }
+
     &::after {
         content: "";
         position: absolute;
@@ -160,14 +199,32 @@ h1 {
     box-shadow:var(--shadow-primary);
     border: var(--border-primary);
 
+    @include tab{
+        flex-direction: column;
+    }
+
+    @include phone-xr{
+        padding: 20px 15px;
+    }
+
     .service-card-icon {
+        --sz:58px;
         flex-shrink: 0;
-        width: 58px;
-        height: 58px;
+        width: var(--sz);
+        height: var(--sz);
         border-radius: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @include phone-xr{
+            --sz:50px;
+
+            svg{
+                width:26px;
+                height:26px;
+            }
+        }
     }
 }
 
@@ -231,6 +288,14 @@ h1 {
     @include transition(0.3s);
     max-width: 900px;
     width: 100%;
+
+    @include tab{
+        max-width: 100%;
+    }
+
+    @include phone-xr{
+        padding: 6px 8px;
+    }
 }
 
 // Logo
@@ -265,6 +330,10 @@ h1 {
     overflow: hidden;
     white-space: nowrap;
     transition: max-width 0.35s ease, opacity 0.25s ease, margin 0.35s ease;
+
+    @include tab{
+        font-size: 15px;
+    }
 }
 
 // Links
@@ -317,6 +386,16 @@ h1 {
     z-index: 0;
     transition: padding 0.35s ease, all 0.2s ease;
 
+    @include tab{
+        padding: 7px 22px;
+        font-size: 14px;
+    }
+
+    @include phone-xr{
+        padding: 6px 18px;
+        font-size: 13px;
+    }
+
     &::after {
         content: "";
         position: absolute;
@@ -349,6 +428,119 @@ h1 {
     transition: opacity 0.25s ease, width 0.35s ease;
 }
 
+// ─── Navbar — Mobile ──────────────────────────────────────────────────────────
+
+.navbar-hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    padding: 6px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    @include transition(0.2s);
+
+    &:hover { background: rgba(0, 0, 0, 0.06); }
+
+    @include tab {
+        display: flex;
+    }
+
+    @include phone-xr{
+        padding: 4px;
+    }
+}
+
+@include tab {
+    .navbar-wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+
+    .navbar-bubble {
+        justify-content: space-between;
+    }
+}
+
+.navbar-mobile-menu {
+    pointer-events: all;
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.navbar-mobile-link {
+    display: block;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-subtle);
+    text-decoration: none;
+    @include transition(0.2s);
+
+    @include phone-xr{
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+        color: var(--color-text);
+    }
+
+    &--active {
+        background: rgba(0, 0, 0, 0.06);
+        color: var(--color-text);
+    }
+}
+
+.navbar-mobile-cta {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    background: var(--color-gradient);
+    color: var(--color-white);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    @include transition(0.2s);
+
+    &:hover { background: var(--color-gradient-hover); }
+}
+
+.cta-ham-box{
+    @include tab{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    @include phone-xr{
+        gap: 5px;
+    }
+}
+
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 
 .hero-section {
@@ -377,6 +569,10 @@ h1 {
     .container{
         height:100%;
     }
+
+    @include tab{
+        height:100%;
+    }
 }
 
 .hero-inner {
@@ -387,6 +583,12 @@ h1 {
     align-items: center;
     padding: 0 80px;
     height:100%;
+
+    @include tab{
+        margin-top: 100px;
+        padding: 0;
+    }
+
 }
 
 // ── Top badge ─────────────────────────────────────────────────────────────────
@@ -405,17 +607,45 @@ h1 {
     right: 0;
     top: 45%;
     padding: 8px 18px;
-    font-size: 19px;
-    line-height: 33px;
+    font-size: 16px;
+    line-height: 28px;
+
+    @include screen-up-1400{
+        font-size: 19px;
+        line-height: 33px;
+    }
+
+    @include tab{
+        position:static;
+        margin-bottom:20px;
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    @include phone-xr{
+        font-size: 14px;
+        line-height: 15px;
+        margin-bottom:18px;
+        padding: 8px 10px;
+    }
+
+    @include phone-5s{
+        font-size: 13px;
+    }
 }
 
 .hero-badge-dot {
-    width: 10px;
-    height: 10px;
+    --sz:10px;
+    width: var(--sz);
+    height: var(--sz);
     border-radius: 50%;
     background: #22c55e;
     flex-shrink: 0;
     box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+
+    @include phone-xr{
+        --sz:8px;
+    }
 }
 
 // ── Heading ───────────────────────────────────────────────────────────────────
@@ -430,20 +660,49 @@ h1 {
     line-height: 1;
     display: flex;
     position: relative;
+
+    @include tab{
+        margin-top: 20px;
+    }
 }
 
 .hero-hi {
-    font-size: 96px;
+    font-size: 84px;
     font-weight: 600;
     color: var(--color-text);
     letter-spacing: -4px;
     line-height: 1;
     font-family: var(--font-primary);
+
+    @include screen-up-1400{
+        font-size: 96px;
+    }
+
+    @include tab{
+        font-size: 64px;
+    } 
+
+    @include phone-xr{
+        font-size: 44px;
+    }
 }
 
 .hero-name-big {
-    margin-top: -30px;
-    height: 159px;
+    height: 140px;
+    margin-top: -35px;
+    @include screen-up-1400 {
+        margin-top: -30px;
+        height: 159px;
+    }
+
+    @include tab{
+        height: 127px;
+    }
+
+    @include phone-xr{
+        height: 94px;
+        margin-top: -26px;
+    }
 }
 
 @keyframes gradientShift {
@@ -454,12 +713,24 @@ h1 {
 // ── Center image ──────────────────────────────────────────────────────────────
 
 .hero-image-wrap {
-    z-index: 1;
+    z-index: -1;
     filter: grayscale(15%);
     flex-shrink: 0;
-    width: 326px;
+    width: 22vw;
     position: absolute;
     bottom: 0;
+
+    @include screen-up-1400{
+        width: 22vw;
+    }
+
+    @include tab{
+        position:static;
+    }
+
+    @include phone{
+        display:none;
+    }
 }
 
 .hero-image {
@@ -482,6 +753,17 @@ h1 {
     position: absolute;
     bottom: 0;
     z-index: 3;
+
+    @include phone{
+        position: static;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    @include phone-xr{
+        gap: 12px;
+    }
 }
 
 .hero-bottom-left {
@@ -489,6 +771,11 @@ h1 {
     flex-direction: column;
     gap: 18px;
     max-width: 280px;
+
+    @include phone{
+       max-width:100%;
+       align-items: center;
+    }
 }
 
 .hero-available-pill {
@@ -499,9 +786,25 @@ h1 {
     color: var(--color-white);
     font-size: 16px;
     font-weight: 500;
-    padding: 10px 18px;
+    padding: 8px 18px;
+    font-size: 15px;
     border-radius: 30px;
     width: fit-content;
+
+    @include screen-up-1400{
+        font-size: 16px;
+        padding: 10px 18px;
+    }
+
+    @include tab{
+        padding: 6px 18px;
+        font-size: 14px;
+    }
+
+    @include phone-xr{
+        padding: 5px 10px;
+        font-size: 12px;
+    }
 }
 
 .hero-pulse {
@@ -529,8 +832,9 @@ h1 {
 }
 
 .hero-social-badge {
-    width: 50px;
-    height: 50px;
+    --sz:50px;
+    width: var(--sz);
+    height:var(--sz);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -543,6 +847,20 @@ h1 {
     position: relative;
     opacity: 0;
     animation: badgeFadeIn 0.8s ease 1.2s forwards;
+
+    @include tab{
+        --sz:44px;
+    }
+
+    @include tab{
+        --sz:38px;
+
+        svg{
+            --sz:16px;
+            width:var(--sz);
+            height:var(--sz);
+        }
+    }
 
     &:first-child { margin-left: 0; }
 
@@ -561,16 +879,35 @@ h1 {
 
 .hero-sub {
     color: var(--color-text-subtle);
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.7;
     position: absolute;
     top: 44%;
     left: 0;
-    // max-width: 370px;
     font-weight: 500;
+
+    @include screen-up-1400{
+        font-size: 20px;
+    }
+
+    @include tab{
+        position:static;
+        text-align:center;
+        margin-bottom: 20px;
+        font-size:16px;
+    }
+
+    @include phone-xr{
+        margin-bottom: 18px;
+        font-size:15px;
+    }
 
     span {
         display: block;
+
+        @include phone-xr{
+            display: inline;
+        }
     }
 }
 
@@ -594,6 +931,10 @@ h1 {
     margin-top: 48px;
     display: flex;
     flex-direction: column;
+
+    @include tab{
+        margin-top:20px;
+    }
 }
 
 .exp-entry {
@@ -603,6 +944,14 @@ h1 {
     padding-bottom: 36px;
     position:sticky;
     top:0;
+
+    @include phone{
+        gap:10px;
+    }
+
+    @include phone-xr{
+        gap:0;
+    }
 
     &:last-child { padding-bottom: 0; }
 }
@@ -645,6 +994,10 @@ h1 {
     align-items: flex-start;
     gap: 16px;
     margin-bottom: 22px;
+
+    @include phone{
+        flex-direction: column;
+    }
 }
 
 .exp-icon {
@@ -668,6 +1021,10 @@ h1 {
     font-weight: 700;
     color: var(--color-text);
     line-height: 1.3;
+
+    @include phone-xr{
+        font-size:18px;
+    }
 }
 
 .exp-company {
@@ -675,12 +1032,20 @@ h1 {
     font-weight: 600;
     color: var(--color-primary);
     margin-top: 3px;
+
+    @include phone-xr{
+        font-size:14px;
+    }
 }
 
 .exp-location {
     font-size: 14px;
     color: var(--color-text-muted);
     margin-top: 2px;
+
+    @include phone-xr{
+        font-size: 13px;
+    }
 }
 
 .exp-badge {
@@ -708,6 +1073,14 @@ h1 {
         line-height: 1.75;
         padding: 10px 0;
         border-bottom: var(--border-primary);
+
+        @include tab{
+            font-size:15px;
+        }
+
+        @include phone-xr{
+            font-size:14px;
+        }
 
         &:first-child { padding-top: 0; }
         &:last-child  { border-bottom: none; padding-bottom: 0; }
@@ -739,6 +1112,10 @@ h1 {
 
 .mt-50{
     margin-top:50px;
+
+    @include phone-xr{
+        margin-top: 20px;
+    }
 }
 
 // ─── Education Section ────────────────────────────────────────────────────────
@@ -1052,9 +1429,9 @@ h1 {
 // Tab filters
 .tab-filters {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 48px;
+    overflow:auto;
 }
 
 .tab-btn {
@@ -1068,8 +1445,12 @@ h1 {
     cursor: pointer;
     transition: color 0.3s ease, border-color 0.3s ease;
     position: relative;
-    overflow: hidden;
     z-index: 0;
+    text-wrap:nowrap;
+
+    @include phone{
+        padding: 7px 14px
+    }
 
     &::after {
         content: "";
@@ -1478,6 +1859,41 @@ h1 {
     display: flex;
     gap: 20px;
     overflow: hidden;
+
+    @include tab {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include phone {
+        grid-template-columns: 1fr;
+    }
+}
+
+@include tab {
+    .project-slide {
+        height: 380px;
+        width: 100%;
+    }
+
+    .projects-slider-wrap {
+        margin-top: 32px;
+    }
+
+    .tab-filters {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+@include phone {
+    .project-slide {
+        height: 360px;
+    }
+
+    .project-card-default .project-card-img {
+        height: 180px;
+    }
 }
 
 // ─── Contact Section ──────────────────────────────────────────────────────────
@@ -1977,6 +2393,10 @@ h1 {
 
 .about-text{
     font-size:20px;
+
+    @include tab{
+        font-size:16px;
+    }
 }
 
 .mgt{
@@ -1988,6 +2408,9 @@ h1 {
     color: var(--color-text-muted);
     line-height: 1.7;
     margin-bottom: 0;
+    @include tab{
+        font-size: 15px;
+    }
 }
 
 .sub-title {
@@ -1995,4 +2418,8 @@ h1 {
     font-weight: 600;
     color: var(--color-text);
     margin-bottom: 8px;
+
+    @include tab{
+        font-size: 18px;
+    }
 }
