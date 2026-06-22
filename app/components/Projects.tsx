@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
-import Image from "next/image";
 import { HiArrowUpRight, HiCheckCircle, HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
@@ -45,7 +44,7 @@ const projects: Project[] = [
       "Responsive, mobile-first interface with seamless UX",
     ],
   
-    image: "https://picsum.photos/seed/ecommerce/600/420",
+    image: "https://placehold.co/600x420/001a3a/ffffff?text=EF+Portfolio",
     link: "https://efportfolio.com/home",
 
     tech: [
@@ -79,7 +78,7 @@ const projects: Project[] = [
       "Built-in help & support ticketing system",
     ],
   
-    image: "https://picsum.photos/seed/healthcare/600/420",
+    image: "https://placehold.co/600x420/001a3a/ffffff?text=NotifyHub",
     link: "https://notify-hub-ashy.vercel.app/",
 
     tech: [
@@ -115,7 +114,7 @@ const projects: Project[] = [
       "Responsive UI with Ant Design and SCSS theming",
     ],
   
-    image: "https://picsum.photos/seed/finance/600/420",
+    image: "https://placehold.co/600x420/001a3a/ffffff?text=Rebate+My+Tax",
     link:"https://www.rebatemytax.com/",
   
     tech: [
@@ -153,7 +152,7 @@ const projects: Project[] = [
       "Persistent task storage with MongoDB",
     ],
   
-    image: "https://picsum.photos/seed/realestate/600/420",
+    image: "https://placehold.co/600x420/001a3a/ffffff?text=Todo+Task+Manager",
   
     tech: [
       "Angular 19",
@@ -185,7 +184,7 @@ const projects: Project[] = [
       "Subscription and payment integration flow",
     ],
   
-    image: "https://picsum.photos/seed/education/600/420",
+    image: "https://placehold.co/600x420/001a3a/ffffff?text=Jade+Scrolls",
     link: "https://jadescrolls.com/",
 
     tech: [
@@ -222,7 +221,7 @@ const projects: Project[] = [
       "Role-based access control for secure routing",
     ],
   
-    image: "https://picsum.photos/seed/restaurant/600/420",
+    image: "https://placehold.co/600x420/001a3a/ffffff?text=Online+Book+Store",
     link: "https://book-shop-frontend-eta.vercel.app/",
 
     tech: [
@@ -260,7 +259,7 @@ const projects: Project[] = [
       "Mobile-first responsive design",
     ],
   
-    image: "https://picsum.photos/seed/logistics/600/420",
+    image: "https://placehold.co/600x420/001a3a/ffffff?text=Kavishree+Exim",
     link: "https://www.kavishreeexim.com/index.html",
 
     tech: [
@@ -308,7 +307,7 @@ export default function Projects() {
   useEffect(() => {
     const check = () => {
       const w = window.innerWidth;
-      setIsDesktop(w >= 1201);
+      setIsDesktop(w >= 992);
       setChunkSize(w <= 767 ? 1 : w <= 991 ? 2 : 4);
     };
     check();
@@ -383,6 +382,11 @@ export default function Projects() {
     setActiveId(null);
   }, [isDesktop]);
 
+  const handleClick = useCallback((id: number) => {
+    if (isDesktop) return;
+    setActiveId(prev => prev === id ? null : id);
+  }, [isDesktop]);
+
   const getSlideStyle = (id: number): React.CSSProperties => {
     if (!isDesktop) return {};
     if (activeId === null) return { flex: "0 1 25%" };
@@ -451,15 +455,15 @@ export default function Projects() {
                       style={getSlideStyle(project.id)}
                       onMouseEnter={() => handleMouseEnter(project.id)}
                       onMouseLeave={() => handleMouseLeave(project.id)}
+                      onClick={() => handleClick(project.id)}
                     >
                       {/* Collapsed card */}
                       <div className="project-card-default">
                         <div className="project-card-img">
-                          <Image
+                          <img
                             src={project.image}
                             alt={project.title}
-                            fill
-                            style={{ objectFit: "cover" }}
+                            style={{ objectFit: "cover", width: "100%", height: "100%" }}
                           />
                         </div>
                         <div className="project-card-body">
