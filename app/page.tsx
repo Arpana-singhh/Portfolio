@@ -22,9 +22,9 @@ export default function Home() {
         <section id="experience"><Experience /></section>
         <section id="projects"><Projects /></section>
         <section id="education"><Education /></section>
-        <section id="certificates" className="d-none"><Certificates /></section>
-        <section id="contact" className="d-none"><Contact /></section>
-        <div className="d-none">
+        <section id="certificates"><Certificates /></section>
+        <section id="contact"><Contact /></section>
+        <div>
         <Footer />
         </div>
         

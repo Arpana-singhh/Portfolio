@@ -17,6 +17,13 @@
 
 body { font-family: var(--font-primary); }
 
+// ─── Scrollbar ────────────────────────────────────────────────────────────────
+
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: #707070; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #b8b8b8; }
+
 ul {
     padding: 0px;
     margin: 0;
@@ -1686,7 +1693,7 @@ h1 {
     }
 
     .project-card-desc {
-        font-size: 13px;
+        font-size: 15px;
         color: var(--color-text-muted);
         line-height: 1.7;
         margin: 0;
@@ -1722,6 +1729,8 @@ h1 {
         display: flex;
         flex-direction: column;
         gap: 16px;
+        overflow: auto;
+        max-height: 393px;
     }
 
     .project-expanded-top {
@@ -1743,7 +1752,7 @@ h1 {
     }
 
     .project-expanded-desc {
-        font-size: 14px;
+        font-size: 15px;
         color: rgba(255,255,255,0.75);
         line-height: 1.75;
         margin: 0;
@@ -1753,13 +1762,13 @@ h1 {
 // ── Shared label ──────────────────────────────────────────────────────────────
 
 .project-category {
-    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--color-primary);
     background: rgba(0,78,146,0.1);
-    padding: 3px 10px;
+    padding: 5px 10px;
+    font-size: 12px;
     border-radius: 20px;
     display: flex;
     width:fit-content;
@@ -1782,13 +1791,13 @@ h1 {
         display: flex;
         align-items: flex-start;
         gap: 8px;
-        font-size: 13px;
+        font-size: 15px;
         color: rgba(255,255,255,0.85);
         line-height: 1.5;
 
         .feat-icon {
             color: #ffffff;
-            font-size: 16px;
+            font-size: 18px;
             flex-shrink: 0;
             margin-top: 1px;
         }
@@ -1812,7 +1821,7 @@ h1 {
     }
 
     .tech-tag {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 600;
         padding: 4px 12px;
         border-radius: 20px;
@@ -1826,12 +1835,12 @@ h1 {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 9px 18px;
+    padding: 8px 18px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.5);
     color: var(--color-white);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     white-space: nowrap;

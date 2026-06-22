@@ -20,152 +20,255 @@ interface Project {
   features: string[];
   image: string;
   tech: string[];
+  link?: string;
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    category: "Full Stack",
+    title: "EF Portfolio",
+    category: "Frontend Engineering",
     type: "professional",
-    shortDesc: "A scalable online shopping experience built for modern retail brands.",
+    shortDesc:
+      "A modern financial portfolio platform delivering real-time analytics and investment insights.",
+  
     longDesc:
-      "Designed and developed a full-featured e-commerce platform handling product catalogs, cart management, secure checkout, and real-time order tracking — optimised for performance and conversions.",
+      "Developed the frontend of a sophisticated financial portfolio management platform using Next.js, React, and TypeScript. Built interactive dashboards for portfolio optimization, sector analysis, and performance tracking, while integrating secure authentication, live brokerage connectivity, subscription workflows, and advanced data visualizations to deliver a seamless investment experience.",
+  
     features: [
-      "Dynamic product filtering & search",
-      "Stripe-powered secure checkout",
-      "Role-based admin dashboard",
-      "Real-time order & inventory sync",
-      "Mobile-first responsive design",
+      "Real-time portfolio analytics & optimization",
+      "Interactive dashboards and financial visualizations",
+      "Live brokerage integration with Plaid & SnapTrade",
+      "Secure authentication and subscription management",
+      "PWA support with dark mode and offline capabilities",
+      "Advanced constraint management for portfolio allocation",
+      "Responsive, mobile-first interface with seamless UX",
     ],
+  
     image: "https://picsum.photos/seed/ecommerce/600/420",
-    tech: ["Next.js", "TypeScript", "MongoDB", "Stripe"],
+    link: "https://efportfolio.com/home",
+
+    tech: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Zustand",
+      "Ant Design",
+      "Plotly.js",
+      "SCSS",
+      "Stripe",
+    ],
   },
   {
     id: 2,
-    title: "Healthcare Dashboard",
-    category: "Web App",
-    type: "professional",
-    shortDesc: "Unified patient management and analytics for healthcare providers.",
+    title: "NotifyHub",
+    category: "Full Stack",
+    type: "personal",
+    shortDesc:
+      "A secure full-stack notification management platform with real-time delivery and role-based access control.",
+  
     longDesc:
-      "Built a comprehensive healthcare portal that streamlines patient records, appointment scheduling, and clinical analytics — improving operational efficiency and enhancing remote care capabilities.",
+      "Built a full-stack notification management platform using the MERN stack with real-time updates via Server-Sent Events (SSE). Implemented a secure Next.js server-side API proxy that routes all requests through Route Handlers, attaches JWT from HttpOnly cookies, and forwards authenticated requests to the backend — ensuring tokens are never exposed to the client. Delivered role-based access control, admin notification targeting, user dashboards with analytics, and a built-in support system for end-to-end communication workflows.",
+  
     features: [
-      "Patient records & EHR management",
-      "Appointment scheduling & reminders",
-      "Interactive analytics & reports",
-      "Secure role-based access control",
-      "Telemedicine video integration",
+      "Real-time notifications via Server-Sent Events (SSE)",
+      "Secure Next.js API proxy with HttpOnly JWT handling",
+      "Role-based admin & user access control",
+      "Notification targeting and delivery tracking",
+      "User dashboard with read/unread analytics",
+      "Built-in help & support ticketing system",
     ],
+  
     image: "https://picsum.photos/seed/healthcare/600/420",
-    tech: ["React.js", "Node.js", "Express.js", "SQL"],
+    link: "https://notify-hub-ashy.vercel.app/",
+
+    tech: [
+      "Next.js 16",
+      "React 19",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Zustand",
+      "Ant Design",
+      "SCSS",
+      "SSE",
+      "JWT",
+    ],
   },
   {
     id: 3,
-    title: "Education Portal",
-    category: "Web Platform",
+    title: "Rebate My Tax",
+    category: "Frontend Engineering",
     type: "professional",
-    shortDesc: "An immersive learning management system for students and educators.",
+    shortDesc:
+      "A modern tax rebate web application for secure filing, scheduling, and claim management.",
+  
     longDesc:
-      "Developed an end-to-end LMS that supports course creation, live classes, progress tracking, and assessments — enriching the digital education experience for thousands of learners.",
+      "Built a full-featured tax rebate web application using Next.js 15, React 19, and TypeScript, delivering a fast and secure user experience. Implemented authenticated workflows with NextAuth, scalable state management using Zustand, and robust form handling with Formik and Yup. Designed a responsive, production-ready UI with Ant Design and SCSS, integrating scheduling, e-signature capture, offline storage, and REST API-driven data workflows.",
+  
     features: [
-      "Course builder with rich media support",
-      "Live class & webinar integration",
-      "Automated progress tracking",
-      "Quizzes, assignments & grading",
-      "Multi-role access for students and tutors",
+      "Secure authentication and role-based workflows",
+      "Tax filing and rebate claim management system",
+      "Scheduling system with FullCalendar integration",
+      "Digital e-signature capture for submissions",
+      "Offline support using IndexedDB (Dexie)",
+      "Responsive UI with Ant Design and SCSS theming",
     ],
-    image: "https://picsum.photos/seed/education/600/420",
-    tech: ["Next.js", "MongoDB", "Tailwind CSS", "Redux"],
+  
+    image: "https://picsum.photos/seed/finance/600/420",
+    link:"https://www.rebatemytax.com/",
+  
+    tech: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "NextAuth",
+      "Zustand",
+      "Formik",
+      "Yup",
+      "Ant Design",
+      "SCSS",
+      "FullCalendar",
+      "Dexie (IndexedDB)",
+      "Axios",
+    ],
   },
   {
     id: 4,
-    title: "Finance Tracker",
-    category: "Web App",
-    type: "professional",
-    shortDesc: "Real-time financial insights and budget management for individuals.",
+    title: "Todo Task Manager",
+    category: "Full Stack (Angular)",
+    type: "personal",
+    shortDesc:
+      "A modular task management system for daily, monthly, and long-term planning.",
+  
     longDesc:
-      "Created a personal finance application with live bank syncing, smart budgeting, expense categorisation, and interactive charts — helping users take full control of their financial health.",
+      "Built a full-stack Todo Task Manager application for organizing tasks across daily, monthly, and general planning views. Developed the frontend using Angular 19 with TypeScript, Angular Material, Bootstrap, and GSAP animations, and built a RESTful backend using Node.js, Express.js, MongoDB, and Mongoose. Implemented complete CRUD workflows, modular planners, and reusable UI components for a smooth and responsive task management experience.",
+  
     features: [
-      "Real-time bank & transaction sync",
-      "Automated expense categorisation",
-      "Custom budget goals & alerts",
-      "Interactive charts & forecasts",
-      "Secure end-to-end data encryption",
+      "Task CRUD operations (create, update, delete, status tracking)",
+      "Quick, Daily, and Monthly planning modules",
+      "Date-based task grouping and scheduling",
+      "Reusable dialogs, notifications, and UI components",
+      "Responsive UI with Angular Material and Bootstrap",
+      "Persistent task storage with MongoDB",
     ],
-    image: "https://picsum.photos/seed/finance/600/420",
-    tech: ["React.js", "TypeScript", "Node.js", "PostgreSQL"],
+  
+    image: "https://picsum.photos/seed/realestate/600/420",
+  
+    tech: [
+      "Angular 19",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "Mongoose",
+      "Angular Material",
+      "Bootstrap",
+      "GSAP",
+    ],
   },
   {
     id: 5,
-    title: "Real Estate Portal",
-    category: "Full Stack",
-    type: "personal",
-    shortDesc: "A modern property listing and search platform for buyers and agents.",
+    title: "Jade Scrolls",
+    category: "Frontend Engineering",
+    type: "professional",
+    shortDesc:
+      "A feature-rich web novel platform for immersive reading, writing, and content discovery.",
+  
     longDesc:
-      "Engineered a high-performance real estate marketplace featuring advanced property search, virtual tours, mortgage calculators, and agent dashboards to simplify the property buying journey.",
+      "Built a full-featured web novel reading platform using Next.js 14, Redux Toolkit, and Firebase, delivering chapter-based reading, author profiles, bookmarks, and subscription workflows. Implemented rich text editing and content creation using CKEditor 5 and TipTap, along with secure authentication, offline-first storage via IndexedDB, and a highly responsive UI designed for a seamless reading experience across devices.",
+  
     features: [
-      "Advanced map-based property search",
-      "Virtual 360° property tours",
-      "Mortgage calculator & affordability tool",
-      "Agent CRM & lead management",
-      "Saved searches & property alerts",
+      "Chapter-by-chapter reading experience with bookmarking",
+      "Author profiles and content discovery system",
+      "Rich text editing with CKEditor 5 and TipTap",
+      "Offline reading support using IndexedDB (Dexie)",
+      "Subscription and payment integration flow",
     ],
-    image: "https://picsum.photos/seed/realestate/600/420",
-    tech: ["Next.js", "Tailwind CSS", "MongoDB", "Zustand"],
+  
+    image: "https://picsum.photos/seed/education/600/420",
+    link: "https://jadescrolls.com/",
+
+    tech: [
+      "Next.js 14",
+      "Redux Toolkit",
+      "Firebase",
+      "NextAuth",
+      "MUI",
+      "Ant Design",
+      "Dexie (IndexedDB)",
+      "SASS",
+      "Formik",
+      "Axios",
+    ],
   },
   {
     id: 6,
-    title: "Social Media App",
-    category: "Mobile / Web",
+    title: "Online Book Store",
+    category: "Full Stack",
     type: "personal",
-    shortDesc: "A community-driven platform connecting people through shared interests.",
+    shortDesc:
+      "A full-stack online bookstore with cart, orders, favourites, and admin management system.",
+  
     longDesc:
-      "Built a feature-rich social networking application with real-time messaging, AI-curated content feeds, and community tools — designed to maximize user engagement and retention.",
+      "Built a full-stack online book store application using React and Node.js, enabling users to browse books, manage favourites, add items to cart, and place orders with complete order tracking. Implemented secure authentication with JWT, email verification via OTP, and password reset flows. Developed an admin panel for managing books and orders with role-based access control, delivering a scalable and production-ready e-commerce experience for digital book sales.",
+  
     features: [
-      "Real-time messaging & notifications",
-      "AI-curated personalised feed",
-      "Community groups & events",
-      "Media uploads & story features",
-      "Moderation & reporting system",
+      "User authentication with JWT and protected routes",
+      "Email OTP verification and password reset system",
+      "Book browsing with details, new releases, and listings",
+      "Cart management with quantity and price calculations",
+      "Favourites and order history tracking",
+      "Admin panel for managing books and orders",
+      "Role-based access control for secure routing",
     ],
-    image: "https://picsum.photos/seed/social/600/420",
-    tech: ["React Native", "Node.js", "Socket.io", "Redis"],
+  
+    image: "https://picsum.photos/seed/restaurant/600/420",
+    link: "https://book-shop-frontend-eta.vercel.app/",
+
+    tech: [
+      "React 19",
+      "Vite",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "Tailwind CSS",
+      "Formik",
+      "Yup",
+      "Axios",
+      "Ant Design",
+      "JWT",
+      "Nodemailer",
+    ],
   },
   {
     id: 7,
-    title: "Logistics Dashboard",
-    category: "Web App",
-    type: "personal",
-    shortDesc: "End-to-end supply chain visibility for fleet and warehouse teams.",
+    title: "Kavishree Exim Website",
+    category: "Frontend Development",
+    type: "professional",
+    shortDesc:
+      "A responsive corporate website for an export-import business showcasing global trade services.",
+  
     longDesc:
-      "Delivered a real-time logistics management platform with live fleet tracking, automated dispatch, and warehouse analytics — helping operations teams reduce delays and cut overhead.",
+      "Designed and developed a fully responsive corporate website for an export-import (EXIM) company using HTML, CSS, JavaScript, and Bootstrap. The website presents company services, global trade capabilities, and business information in a clean, professional layout optimized for credibility, responsiveness, and user engagement.",
+  
     features: [
-      "Live GPS fleet tracking",
-      "Automated dispatch & route planning",
-      "Warehouse inventory management",
-      "Driver mobile app integration",
-      "SLA monitoring & alert system",
+      "Responsive multi-page corporate layout using Bootstrap",
+      "Service and company profile sections",
+      "Clean and professional UI for business presentation",
+      "Contact form for customer inquiries",
+      "Mobile-first responsive design",
     ],
+  
     image: "https://picsum.photos/seed/logistics/600/420",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Mapbox"],
-  },
-  {
-    id: 8,
-    title: "Restaurant Platform",
-    category: "Full Stack",
-    type: "personal",
-    shortDesc: "Smart ordering and kitchen management for modern restaurants.",
-    longDesc:
-      "Developed an integrated restaurant management system covering online ordering, table reservations, kitchen display, and loyalty programmes — streamlining front-of-house and back-of-house operations.",
-    features: [
-      "Online ordering & menu management",
-      "Real-time kitchen display system",
-      "Table reservation & waitlist",
-      "Loyalty points & promotions",
-      "Revenue analytics & reports",
+    link: "https://www.kavishreeexim.com/index.html",
+
+    tech: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Bootstrap",
     ],
-    image: "https://picsum.photos/seed/restaurant/600/420",
-    tech: ["React.js", "Node.js", "MongoDB", "Stripe"],
   },
 ];
 
@@ -374,7 +477,15 @@ export default function Projects() {
                         <div className="project-expanded-overlay" />
                         <div className="project-expanded-content">
                           <div className="project-expanded-top">
+                          <div className="project-tech-tags">
                             <span className="project-category light">{project.category}</span>
+                            {project.link && (
+                              <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                                View Project <HiArrowUpRight />
+                              </a>
+                            )}
+                          </div>
+                           
                             <h3 className="project-expanded-title">
                               {project.title}
                             </h3>
@@ -394,9 +505,6 @@ export default function Projects() {
                                 <span key={t} className="tech-tag">{t}</span>
                               ))}
                             </div>
-                            <a href="#" className="project-link-btn">
-                              View Project <HiArrowUpRight />
-                            </a>
                           </div>
                         </div>
                       </div>

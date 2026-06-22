@@ -24,31 +24,20 @@ const certs: Certificate[] = [
     issuer: "State Innovation Hub, Gujarat",
     date: "Oct 2022 – Feb 2023",
     description:
-      "Developed a portal to report workplace sexual harassment; earned 2nd prize at the state-level SSIP innovation competition organised by the Government of Gujarat.",
+      "Developed a portal to report workplace sexual harassment. Secured 2nd prize at the state-level SSIP innovation competition organised by the Government of Gujarat.",
     image: "/assets/images/project1.webp",
     accent: "#d97706",
   },
   {
     id: 2,
-    badge: "Certified",
-    title: "React Developer Certification",
-    issuer: "Meta / Coursera",
-    date: "Jan 2024",
+    badge: "Star Performer",
+    title: "Star Performer Award",
+    issuer: "Pavan Group Company",
+    date: "2023",
     description:
-      "Comprehensive certification covering React 18 architecture, advanced hooks, performance optimisation, React Testing Library, and building production-ready component systems.",
+      "Recognised with the Star Performer Award for superior performance, hard work, and dedication during my tenure at the organisation.",
     image: "/assets/images/project2.webp",
     accent: "#0077e6",
-  },
-  {
-    id: 3,
-    badge: "Verified",
-    title: "Full-Stack Web Development",
-    issuer: "Udemy",
-    date: "Jun 2023",
-    description:
-      "End-to-end full-stack course covering Node.js, Express, MongoDB, REST APIs, authentication, and deployment on cloud platforms.",
-    image: "/assets/images/project3.webp",
-    accent: "#059669",
   },
 ];
 
