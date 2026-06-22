@@ -23,7 +23,7 @@ export default function Home() {
         <section id="projects"><Projects /></section>
         <section id="education"><Education /></section>
         <section id="certificates"><Certificates /></section>
-        <section id="contact"><Contact /></section>
+        <section id="contact" ><Contact /></section>
         <div>
         <Footer />
         </div>
