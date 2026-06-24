@@ -269,6 +269,47 @@ const projects: Project[] = [
       "Bootstrap",
     ],
   },
+  {
+    id: 8,
+    title: "FeedBox",
+    category: "Full Stack Development",
+    type: "professional",
+    shortDesc:
+      "A full-stack feedback collection platform that enables project owners to gather and manage user feedback efficiently.",
+  
+    longDesc:
+      "FeedBox is a full-stack feedback collection platform built with Next.js, Firebase, and Express.js. Project owners can register, create projects, and share a unique key or link to collect feedback from users. Anyone with the shared key can submit star-rated feedback without requiring an account. The platform provides a centralized dashboard for managing projects and analyzing feedback. The frontend is deployed on Vercel, while the backend is hosted on Render. Firebase powers authentication and Firestore enables real-time data synchronization.",
+  
+    features: [
+      "User registration and authentication with Email and Google OAuth",
+      "Create, edit, and delete projects",
+      "Unique project key generation with duplicate prevention",
+      "Public feedback submission with star ratings and comments",
+      "Dashboard with feedback analytics and overview",
+      "Pagination for project listings",
+      "Protected routes using Next.js middleware",
+      "Responsive mobile navigation and UI",
+      "Real-time data synchronization with Firestore",
+      "Mobile-first responsive design",
+    ],
+  
+    image: "https://placehold.co/600x420/0f172a/ffffff?text=FeedBox",
+    link: "https://your-feedbox-demo-link.com",
+  
+    tech: [
+      "Next.js",
+      "React",
+      "Firebase",
+      "Firestore",
+      "Firebase Authentication",
+      "Express.js",
+      "Node.js",
+      "SCSS",
+      "JavaScript",
+      "Vercel",
+      "Render",
+    ],
+  }
 ];
 
 function chunkProjects(list: Project[], size: number) {

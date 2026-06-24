@@ -10,11 +10,6 @@ const NAV_LINKS = [
   { label: "Contact",    href: "#contact" },
 ];
 
-const SOCIALS = [
-  { label: "GitHub",    icon: <FaGithub size={16} />,    href: "#" },
-  { label: "LinkedIn",  icon: <FaLinkedinIn size={16} />, href: "#" },
-  { label: "Instagram", icon: <FaInstagram size={16} />,  href: "#" },
-];
 
 export default function Footer() {
   return (
@@ -82,6 +77,14 @@ export default function Footer() {
           <p className="footer-copy">
             &copy; {new Date().getFullYear()} Arpana Singh. All rights reserved.
           </p>
+          <a
+            href="http://localhost:3000/feedback?key=portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-feedback-btn"
+          >
+            Give Feedback
+          </a>
           <p className="footer-credit">
             Designed &amp; Developed by <span>Arpana Singh</span>
           </p>
