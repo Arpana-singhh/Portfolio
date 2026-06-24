@@ -1717,7 +1717,7 @@ h1 {
         border-radius: 14px;
         margin: 12px;
         width: calc(100% - 24px);
-
+        border: var(--border-primary);
         img { transition: transform 0.4s ease; }
     }
 

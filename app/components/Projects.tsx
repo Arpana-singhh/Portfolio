@@ -44,7 +44,7 @@ const projects: Project[] = [
       "Responsive, mobile-first interface with seamless UX",
     ],
   
-    image: "https://placehold.co/600x420/001a3a/ffffff?text=EF+Portfolio",
+    image:  "/assets/images/efportfolio.png",
     link: "https://efportfolio.com/home",
 
     tech: [
@@ -78,7 +78,7 @@ const projects: Project[] = [
       "Built-in help & support ticketing system",
     ],
   
-    image: "https://placehold.co/600x420/001a3a/ffffff?text=NotifyHub",
+    image: "/assets/images/notify.png",
     link: "https://notify-hub-ashy.vercel.app/",
 
     tech: [
@@ -114,7 +114,7 @@ const projects: Project[] = [
       "Responsive UI with Ant Design and SCSS theming",
     ],
   
-    image: "https://placehold.co/600x420/001a3a/ffffff?text=Rebate+My+Tax",
+    image:  "/assets/images/rebate-my-tax.png",
     link:"https://www.rebatemytax.com/",
   
     tech: [
@@ -293,7 +293,7 @@ const projects: Project[] = [
       "Mobile-first responsive design",
     ],
   
-    image: "https://placehold.co/600x420/0f172a/ffffff?text=FeedBox",
+    image:  "/assets/images/feedbox.png",
     link: "https://your-feedbox-demo-link.com",
   
     tech: [
